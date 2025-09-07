@@ -26,4 +26,8 @@ public class PromotionsDomainEntity {
     private UUID customerId;
     private UUID roomId;
     private Integer dishId;
+
+    private HotelDomainEntity hotel;
+    private RoomDomainEntity room;
+    private RestaurantDomainEntity restaurant;
 }

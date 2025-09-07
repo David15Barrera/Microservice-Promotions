@@ -26,4 +26,8 @@ public class PromotionsResponseDto {
     private UUID customerId;
     private UUID roomId;
     private Integer dishId;
+
+    public HotelResponse hotel;
+    public RoomResponse room;
+    public RestaurantResponse restaurant;
 }
