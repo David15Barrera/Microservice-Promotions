@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,8 +19,8 @@ import java.util.UUID;
 @Builder
 public class PromotionsDBEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String name;
 
@@ -29,7 +30,7 @@ public class PromotionsDBEntity {
     private String type;
 
     @Column(name = "discount_percentage")
-    private Double discountPercentage;
+    private BigDecimal discountPercentage;
 
     private LocalDate startDate;
     private LocalDate endDate;
@@ -38,7 +39,7 @@ public class PromotionsDBEntity {
     private UUID restaurantId;
     private UUID customerId;
     private UUID roomId;
-    private UUID dishId;
+    private Integer dishId;
 
     private LocalDateTime createdAt;
 }

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -16,12 +17,12 @@ public class PromotionsRequestDto {
     private String name;
     private String description;
     private String type;
-    private Double discountPercentage;
+    private BigDecimal discountPercentage;
     private LocalDate startDate;
     private LocalDate endDate;
     private UUID hotelId;
     private UUID restaurantId;
     private UUID customerId;
     private UUID roomId;
-    private UUID dishId;
+    private Integer dishId;
 }

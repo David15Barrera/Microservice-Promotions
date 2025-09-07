@@ -7,6 +7,7 @@ import com.service.promotionService.promotions.domain.model.PromotionsDomainEnti
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @UseCase
 @Service
@@ -18,7 +19,7 @@ public class GetpromotionsByIdUseCase implements GetPromotionsByIdInputPort {
     }
 
     @Override
-    public PromotionsDomainEntity getById(Integer id) {
+    public PromotionsDomainEntity getById(UUID id) {
         Optional<PromotionsDomainEntity> opt = findByIdPort.findById(id);
         return opt.orElseThrow(() -> new RuntimeException("Promotion not found"));
     }

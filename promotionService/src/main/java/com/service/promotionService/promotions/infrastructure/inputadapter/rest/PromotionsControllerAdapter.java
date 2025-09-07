@@ -48,7 +48,7 @@ public class PromotionsControllerAdapter {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PromotionsResponseDto> get(@PathVariable Integer id){
+    public ResponseEntity<PromotionsResponseDto> get(@PathVariable UUID id){
         PromotionsDomainEntity found = getUseCase.getById(id);
         return ResponseEntity.ok(PromotionsMapperRest.toResponse(found));
     }
@@ -61,14 +61,14 @@ public class PromotionsControllerAdapter {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PromotionsResponseDto> update(@PathVariable Integer id, @RequestBody PromotionsRequestDto dto){
+    public ResponseEntity<PromotionsResponseDto> update(@PathVariable UUID id, @RequestBody PromotionsRequestDto dto){
         var domain = PromotionsMapperRest.toDomain(dto);
         var updated = updateUseCase.update(id, domain);
         return ResponseEntity.ok(PromotionsMapperRest.toResponse(updated));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
+    public ResponseEntity<Void> delete(@PathVariable UUID id){
         deleteUseCase.delete(id);
         return ResponseEntity.noContent().build();
     }

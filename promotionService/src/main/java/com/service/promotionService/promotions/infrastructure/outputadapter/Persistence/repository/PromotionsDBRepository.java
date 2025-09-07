@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface PromotionsDBRepository extends JpaRepository<PromotionsDBEntity, Integer> {
+public interface PromotionsDBRepository extends JpaRepository<PromotionsDBEntity, UUID> {
     List<PromotionsDBEntity> findByHotelId(java.util.UUID hotelId);
     List<PromotionsDBEntity> findByRestaurantId(UUID restaurantId);
     List<PromotionsDBEntity> findByRoomId(UUID roomId);

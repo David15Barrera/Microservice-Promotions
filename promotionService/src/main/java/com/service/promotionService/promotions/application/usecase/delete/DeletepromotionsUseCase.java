@@ -5,6 +5,8 @@ import com.service.promotionService.promotions.application.ports.input.DeletePro
 import com.service.promotionService.promotions.application.ports.output.DeletePromotionsOutputPort;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @UseCase
 @Service
 public class DeletepromotionsUseCase implements DeletePromotionsInputPort {
@@ -15,7 +17,7 @@ public class DeletepromotionsUseCase implements DeletePromotionsInputPort {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(UUID id) {
         deletePort.delete(id);
     }
 }

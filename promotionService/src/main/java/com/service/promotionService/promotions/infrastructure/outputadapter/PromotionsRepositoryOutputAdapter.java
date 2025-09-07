@@ -68,7 +68,7 @@ public class PromotionsRepositoryOutputAdapter implements SavePromotionsOutputPo
     }
 
     @Override
-    public PromotionsDomainEntity update(Integer id, PromotionsDomainEntity promotions) {
+    public PromotionsDomainEntity update(UUID id, PromotionsDomainEntity promotions) {
         PromotionsDBEntity e = repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
         e.setName(promotions.getName());
         e.setDescription(promotions.getDescription());
@@ -86,12 +86,12 @@ public class PromotionsRepositoryOutputAdapter implements SavePromotionsOutputPo
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(UUID id) {
         repository.deleteById(id);
     }
 
     @Override
-    public Optional<PromotionsDomainEntity> findById(Integer id) {
+    public Optional<PromotionsDomainEntity> findById(UUID id) {
         return repository.findById(id).map(this::toDomain);
     }
 

@@ -6,6 +6,8 @@ import com.service.promotionService.promotions.application.ports.output.UpdatePr
 import com.service.promotionService.promotions.domain.model.PromotionsDomainEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @UseCase
 @Service
 public class UpdatepromotionsUseCase implements UpdatePromotionsInputPort {
@@ -16,7 +18,7 @@ public class UpdatepromotionsUseCase implements UpdatePromotionsInputPort {
     }
 
     @Override
-    public PromotionsDomainEntity update(Integer id, PromotionsDomainEntity promotions) {
+    public PromotionsDomainEntity update(UUID id, PromotionsDomainEntity promotions) {
         return updatePort.update(id, promotions);
     }
 }

@@ -1,5 +1,7 @@
 package com.service.promotionService.promotions.application.ports.output;
 
+import java.util.UUID;
+
 public interface DeletePromotionsOutputPort {
-    void delete(Integer id);
+    void delete(UUID id);
 }
