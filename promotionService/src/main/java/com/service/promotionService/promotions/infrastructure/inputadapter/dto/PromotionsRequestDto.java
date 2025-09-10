@@ -24,5 +24,5 @@ public class PromotionsRequestDto {
     private UUID restaurantId;
     private UUID customerId;
     private UUID roomId;
-    private Integer dishId;
+    private UUID dishId;
 }

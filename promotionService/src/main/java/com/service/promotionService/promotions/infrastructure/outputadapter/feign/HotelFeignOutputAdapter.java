@@ -1,9 +1,9 @@
-package com.service.promotionService.promotions.infrastructure.outputadapter;
+package com.service.promotionService.promotions.infrastructure.outputadapter.feign;
 
 import com.service.promotionService.promotions.application.ports.output.FindHotelOutputPort;
 import com.service.promotionService.promotions.domain.model.HotelDomainEntity;
-import com.service.promotionService.promotions.infrastructure.inputadapter.dto.HotelResponse;
-import com.service.promotionService.promotions.infrastructure.outputadapter.feign.HotelFeignClient;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.HotelResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.HotelFeign.HotelFeignClient;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

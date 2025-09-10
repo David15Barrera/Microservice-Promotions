@@ -1,7 +1,7 @@
-package com.service.promotionService.promotions.infrastructure.outputadapter.feign;
+package com.service.promotionService.promotions.infrastructure.outputadapter.feign.RestaurantFeing;
 
-import com.service.promotionService.promotions.infrastructure.inputadapter.dto.HotelResponse;
-import com.service.promotionService.promotions.infrastructure.inputadapter.dto.RestaurantResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.RestaurantResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.fallback.RestaurantFeignClientFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

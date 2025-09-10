@@ -2,6 +2,9 @@ package com.service.promotionService.promotions.infrastructure.inputadapter.mapp
 
 import com.service.promotionService.promotions.domain.model.PromotionsDomainEntity;
 import com.service.promotionService.promotions.infrastructure.inputadapter.dto.*;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.HotelResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.RestaurantResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.RoomResponse;
 
 public class PromotionsMapperRest {
     public static PromotionsDomainEntity toDomain(PromotionsRequestDto dto){

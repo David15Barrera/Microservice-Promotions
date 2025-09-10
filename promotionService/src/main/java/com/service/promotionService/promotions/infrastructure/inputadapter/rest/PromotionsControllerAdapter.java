@@ -4,6 +4,7 @@ import com.service.promotionService.promotions.application.ports.input.*;
 import com.service.promotionService.promotions.domain.model.PromotionsDomainEntity;
 import com.service.promotionService.promotions.infrastructure.inputadapter.dto.*;
 import com.service.promotionService.promotions.infrastructure.inputadapter.mapper.PromotionsMapperRest;
+import com.service.promotionService.promotions.infrastructure.outputadapter.factory.PromotionsWithRelationsFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,12 +24,13 @@ public class PromotionsControllerAdapter {
     private final GetPromotionsByHotelInputPort getPromotionsByHotelInputPort;
     private final GetPromotionsByRestaurantInputPort getPromotionsByRestaurantInputPort;
     private final GetPromotionsByRoomInputPort getPromotionsByRoomInputPort;
+    private final PromotionsWithRelationsFactory promotionsFactory;
 
     public PromotionsControllerAdapter(CreatePromotionsInputPort createUseCase,
                                        UpdatePromotionsInputPort updateUseCase,
                                        GetPromotionsByIdInputPort getUseCase,
                                        DeletePromotionsInputPort deleteUseCase,
-                                       ListAllPromotionsInputPort listUseCase, GetPromotionsByHotelInputPort getPromotionsByHotelInputPort, GetPromotionsByRestaurantInputPort getPromotionsByRestaurantInputPort, GetPromotionsByRoomInputPort getPromotionsByRoomInputPort) {
+                                       ListAllPromotionsInputPort listUseCase, GetPromotionsByHotelInputPort getPromotionsByHotelInputPort, GetPromotionsByRestaurantInputPort getPromotionsByRestaurantInputPort, GetPromotionsByRoomInputPort getPromotionsByRoomInputPort, PromotionsWithRelationsFactory promotionsFactory) {
         this.createUseCase = createUseCase;
         this.updateUseCase = updateUseCase;
         this.getUseCase = getUseCase;
@@ -37,34 +39,34 @@ public class PromotionsControllerAdapter {
         this.getPromotionsByHotelInputPort = getPromotionsByHotelInputPort;
         this.getPromotionsByRestaurantInputPort = getPromotionsByRestaurantInputPort;
         this.getPromotionsByRoomInputPort = getPromotionsByRoomInputPort;
+        this.promotionsFactory = promotionsFactory;
     }
 
 
-    @PostMapping
-    public ResponseEntity<PromotionsResponseDto> create(@RequestBody PromotionsRequestDto dto){
-        PromotionsDomainEntity domain = PromotionsMapperRest.toDomain(dto);
-        PromotionsDomainEntity created = createUseCase.create(domain);
-        return ResponseEntity.ok(PromotionsMapperRest.toResponse(created));
+
+    @GetMapping
+    public ResponseEntity<List<PromotionsResponseDto>> listAll() {
+        List<PromotionsDomainEntity> all = listUseCase.listAll();
+        List<PromotionsResponseDto> resp = promotionsFactory.fromDomainList(all);
+        return ResponseEntity.ok(resp);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PromotionsResponseDto> get(@PathVariable UUID id){
         PromotionsDomainEntity found = getUseCase.getById(id);
-        return ResponseEntity.ok(PromotionsMapperRest.toResponse(found));
+        return ResponseEntity.ok(promotionsFactory.fromDomain(found));
     }
 
-    @GetMapping
-    public ResponseEntity<List<PromotionsResponseDto>> listAll(){
-        var list = listUseCase.listAll();
-        var resp = list.stream().map(PromotionsMapperRest::toResponse).collect(Collectors.toList());
-        return ResponseEntity.ok(resp);
+    @PostMapping
+    public ResponseEntity<PromotionsResponseDto> create(@RequestBody PromotionsRequestDto dto){
+        PromotionsDomainEntity created = createUseCase.create(PromotionsMapperRest.toDomain(dto));
+        return ResponseEntity.ok(promotionsFactory.fromDomain(created));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PromotionsResponseDto> update(@PathVariable UUID id, @RequestBody PromotionsRequestDto dto){
-        var domain = PromotionsMapperRest.toDomain(dto);
-        var updated = updateUseCase.update(id, domain);
-        return ResponseEntity.ok(PromotionsMapperRest.toResponse(updated));
+        PromotionsDomainEntity updated = updateUseCase.update(id, PromotionsMapperRest.toDomain(dto));
+        return ResponseEntity.ok(promotionsFactory.fromDomain(updated));
     }
 
     @DeleteMapping("/{id}")
@@ -74,19 +76,24 @@ public class PromotionsControllerAdapter {
     }
 
     @GetMapping("/by-hotel/{hotelId}")
-    public List<PromotionsDomainEntity> getPromotionsByHotel(@PathVariable UUID hotelId) {
-        return getPromotionsByHotelInputPort.getPromotionsByHotel(hotelId);
+    public ResponseEntity<List<PromotionsResponseDto>> getPromotionsByHotel(@PathVariable UUID hotelId) {
+        List<PromotionsDomainEntity> promotions = getPromotionsByHotelInputPort.getPromotionsByHotel(hotelId);
+        List<PromotionsResponseDto> response = promotionsFactory.fromDomainList(promotions);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/by-restaurant/{restaurantId}")
-    public List<PromotionsDomainEntity> getPromotionsByRestaurant(
-            @PathVariable java.util.UUID restaurantId) {
-        return getPromotionsByRestaurantInputPort.getPromotionsByRestaurant(restaurantId);
+    public ResponseEntity<List<PromotionsResponseDto>> getPromotionsByRestaurant(@PathVariable UUID restaurantId) {
+        List<PromotionsDomainEntity> promotions = getPromotionsByRestaurantInputPort.getPromotionsByRestaurant(restaurantId);
+        List<PromotionsResponseDto> response = promotionsFactory.fromDomainList(promotions);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/by-room/{roomId}")
-    public List<PromotionsDomainEntity> getPromotionsByRoom(
-            @PathVariable java.util.UUID roomId) {
-        return getPromotionsByRoomInputPort.getPromotionsByRoom(roomId);
+    public ResponseEntity<List<PromotionsResponseDto>> getPromotionsByRoom(@PathVariable UUID roomId) {
+        List<PromotionsDomainEntity> promotions = getPromotionsByRoomInputPort.getPromotionsByRoom(roomId);
+        List<PromotionsResponseDto> response = promotionsFactory.fromDomainList(promotions);
+        return ResponseEntity.ok(response);
     }
+
 }

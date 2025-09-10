@@ -1,9 +1,9 @@
-package com.service.promotionService.promotions.infrastructure.outputadapter;
+package com.service.promotionService.promotions.infrastructure.outputadapter.feign;
 
 import com.service.promotionService.promotions.application.ports.output.FindRestaurantOutputPort;
 import com.service.promotionService.promotions.domain.model.RestaurantDomainEntity;
-import com.service.promotionService.promotions.infrastructure.inputadapter.dto.RestaurantResponse;
-import com.service.promotionService.promotions.infrastructure.outputadapter.feign.RestaurantFeignClient;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.RestaurantResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.RestaurantFeing.RestaurantFeignClient;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

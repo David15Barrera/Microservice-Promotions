@@ -1,5 +1,8 @@
 package com.service.promotionService.promotions.infrastructure.inputadapter.dto;
 
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.HotelResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.RestaurantResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.RoomResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,18 +17,18 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class PromotionsResponseDto {
-    private UUID id;
-    private String name;
-    private String description;
-    private String type;
-    private BigDecimal discountPercentage;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private UUID hotelId;
-    private UUID restaurantId;
-    private UUID customerId;
-    private UUID roomId;
-    private Integer dishId;
+    public UUID id;
+    public String name;
+    public String description;
+    public String type;
+    public BigDecimal discountPercentage;
+    public LocalDate startDate;
+    public LocalDate endDate;
+    public UUID hotelId;
+    public UUID restaurantId;
+    public UUID customerId;
+    public UUID roomId;
+    public UUID dishId;
 
     public HotelResponse hotel;
     public RoomResponse room;

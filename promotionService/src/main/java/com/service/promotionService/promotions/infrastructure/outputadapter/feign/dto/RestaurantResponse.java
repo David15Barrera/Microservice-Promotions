@@ -1,4 +1,4 @@
-package com.service.promotionService.promotions.infrastructure.inputadapter.dto;
+package com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto;
 
 import java.time.LocalTime;
 import java.time.OffsetDateTime;

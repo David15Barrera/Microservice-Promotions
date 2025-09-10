@@ -1,7 +1,7 @@
-package com.service.promotionService.promotions.infrastructure.outputadapter.feign;
+package com.service.promotionService.promotions.infrastructure.outputadapter.feign.fallback;
 
-import com.service.promotionService.promotions.infrastructure.inputadapter.dto.HotelResponse;
-import com.service.promotionService.promotions.infrastructure.inputadapter.dto.RestaurantResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.RestaurantResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.RestaurantFeing.RestaurantFeignClient;
 import feign.RetryableException;
 import org.springframework.cloud.openfeign.FallbackFactory;
 

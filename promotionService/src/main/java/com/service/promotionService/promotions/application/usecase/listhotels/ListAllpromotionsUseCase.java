@@ -15,44 +15,15 @@ import java.util.List;
 @Service
 public class ListAllpromotionsUseCase implements ListAllPromotionsInputPort {
     private final FindingAllPromotionsOutputPort findingAllPort;
-    private final FindHotelOutputPort HotelOutputPort;
-    private final FindRoomOutPort findRoomOutPort;
-    private final FindRestaurantOutputPort findRestaurantOutputPort;
 
-    public ListAllpromotionsUseCase(FindingAllPromotionsOutputPort findingAllPort,
-                                    FindHotelOutputPort HotelOutputPort,
-                                    FindRoomOutPort findRoomOutPort,
-                                    FindRestaurantOutputPort findRestaurantOutputPort) {
+    public ListAllpromotionsUseCase(FindingAllPromotionsOutputPort findingAllPort
+                                    ) {
         this.findingAllPort = findingAllPort;
-        this.HotelOutputPort = HotelOutputPort;
-        this.findRoomOutPort = findRoomOutPort;
-        this.findRestaurantOutputPort = findRestaurantOutputPort;
     }
 
     @Override
     public List<PromotionsDomainEntity> listAll() {
         List<PromotionsDomainEntity> promotions = findingAllPort.findAll();
-
-        for (PromotionsDomainEntity promotion : promotions) {
-            if (promotion.getHotelId() != null) {
-                promotion.setHotel(HotelOutputPort.findById(promotion.getHotelId()));
-            } else {
-                promotion.setHotel(null);
-            }
-
-            if (promotion.getRoomId() != null) {
-                promotion.setRoom(findRoomOutPort.findById(promotion.getRoomId()));
-            } else {
-                promotion.setRoom(null);
-            }
-
-            if (promotion.getRestaurantId() != null) {
-                promotion.setRestaurant(findRestaurantOutputPort.findById(promotion.getRestaurantId()));
-            } else {
-                promotion.setRestaurant(null);
-            }
-        }
-
 
         return promotions;
     }

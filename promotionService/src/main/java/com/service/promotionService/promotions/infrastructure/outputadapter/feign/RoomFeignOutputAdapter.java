@@ -1,9 +1,9 @@
-package com.service.promotionService.promotions.infrastructure.outputadapter;
+package com.service.promotionService.promotions.infrastructure.outputadapter.feign;
 
 import com.service.promotionService.promotions.application.ports.output.FindRoomOutPort;
 import com.service.promotionService.promotions.domain.model.RoomDomainEntity;
-import com.service.promotionService.promotions.infrastructure.inputadapter.dto.RoomResponse;
-import com.service.promotionService.promotions.infrastructure.outputadapter.feign.HotelFeignClient;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.dto.RoomResponse;
+import com.service.promotionService.promotions.infrastructure.outputadapter.feign.HotelFeign.HotelFeignClient;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

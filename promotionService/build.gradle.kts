@@ -47,6 +47,7 @@ dependencies {
 
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
     implementation("com.warrenstrange:googleauth:1.5.0")
+    implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j")
 }
 
 dependencyManagement {

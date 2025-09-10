@@ -39,7 +39,7 @@ public class PromotionsDBEntity {
     private UUID restaurantId;
     private UUID customerId;
     private UUID roomId;
-    private Integer dishId;
+    private UUID dishId;
 
     private LocalDateTime createdAt;
 }
