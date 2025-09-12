@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.UUID;
 
-@FeignClient(name = "RestaurantClient", url = "http://localhost:8084/api/restaurant", fallbackFactory = RestaurantFeignClientFallbackFactory.class)
+@FeignClient(name = "RestaurantClient", url = "https://microservice-restaurante-1.onrender.com/api/restaurant", fallbackFactory = RestaurantFeignClientFallbackFactory.class)
 public interface RestaurantFeignClient {
 
     @GetMapping("/api/restaurants/{id}")
